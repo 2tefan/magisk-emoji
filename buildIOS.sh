@@ -2,7 +2,9 @@
 
 . $(dirname "$0")/common.sh
 
-VERSION=15.4
+FONT_VERSION=2.034
+PACKAGE_VERSION=2
+
 VERSION_CODE=2
 FONT=ios
 

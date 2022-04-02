@@ -1,8 +1,10 @@
-#!/bin/bash
+#!/bin/bash -x
 
 . $(dirname "$0")/common.sh
 
-VERSION=2.034-1
+FONT_VERSION=2.034
+PACKAGE_VERSION=2
+
 VERSION_CODE=2
 FONT=noto
 
