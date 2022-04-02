@@ -1,17 +1,33 @@
+variables:
+  # Feel free to choose the image that suits you best.
+  # blang/latex:latest ... Former image used in this template. No longer maintained by author.
+  # listx/texlive:2020 ... The default, referring to TexLive 2020. Current at least to 2021-02-02.
+
+  # Additional alternatives with high Docker pull counts:
+  # thomasweise/docker-texlive-full
+  # thomasweise/texlive
+  # adnrv/texlive
+  IMAGE: ubuntu:20220315
+
+
 stages:
   - build
 #  - test
 #  - deploy
 
 build-noto:
+  image: $IMAGE
   stage: build
   script:
+    - apt update && apt install -y zip
     - echo "Building Noto"
     - ./buildNoto.sh
 
 build-ios:
+  image: $IMAGE
   stage: build
   script:
+    - apt update && apt install -y zip
     - echo "Building iOS"
     - ./buildIOS.sh
 
