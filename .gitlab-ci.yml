@@ -1,0 +1,17 @@
+stages:
+  - build
+#  - test
+#  - deploy
+
+build-noto:
+  stage: build
+  script:
+    - echo "Building Noto"
+    - ./buildNoto.sh
+
+build-ios:
+  stage: build
+  script:
+    - echo "Building iOS"
+    - ./buildIOS.sh
+
