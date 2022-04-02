@@ -1,0 +1,7 @@
+id=magisk_emoji_<font>
+name=Magisk Emoji Font [<font>]
+version=v<version>
+versionCode=<versionCode>
+author=2tefan
+description=Systemlessly replaces emoji font with <font> emoji font
+updateJson=https://gitlab.com/2tefan/magisk-emoji/-/raw/main/Data/<font>/MagiskUpdate/update.json

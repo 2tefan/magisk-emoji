@@ -1,7 +1,0 @@
-id=NotoColorEmoji_Emoji
-name=NotoColorEmoji 14.0 Emoji font
-version=v14.0
-versionCode=1
-author=2tefan
-description=Systemlessly replaces emoji font with NotoColorEmoji 14.0 Emoji 
-updateJson=https://raw.githubusercontent.com/2tefan/Magisk-Noto-Emoji-14/main/.magisk/update.json

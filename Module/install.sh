@@ -123,7 +123,7 @@ REPLACE="
 
 print_modname() {
   ui_print "*******************************"
-  ui_print "      NotoColorEmoji 14.0      "
+  ui_print "  Magisk Emoji Font [<font>]"
   ui_print "*******************************"
 }
 
