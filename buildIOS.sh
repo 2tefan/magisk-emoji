@@ -2,7 +2,7 @@
 
 . $(dirname "$0")/common.sh
 
-FONT_VERSION=2.034
+FONT_VERSION=15.4
 PACKAGE_VERSION=2
 
 VERSION_CODE=2

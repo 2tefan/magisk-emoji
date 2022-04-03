@@ -47,6 +47,11 @@ upload:
     expire_in: never
     paths:
       - "out/*.zip"
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - out/
+
 
 release_job:
   stage: release
