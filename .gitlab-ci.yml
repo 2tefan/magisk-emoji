@@ -1,9 +1,8 @@
 variables:
-  PACKAGE_VERSION: "1.0.0"
   IMAGE: ubuntu:bionic-20220315
   NOTO_NAME: Magisk-Emoji-Font-noto-v2.034-2.zip
   IOS_NAME: Magisk-Emoji-Font-ios-v15.4-2.zip
-  PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/magisk-emoji/${PACKAGE_VERSION}"
+  PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/magisk-emoji/${CI_COMMIT_TAG}"
 
 stages:
   - build
