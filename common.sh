@@ -1,9 +1,34 @@
 #!/bin/bash
 
-: "${BUILD_DIR:=build}"
-: "${OUT_DIR:=out}"
-: "${VERSION:=$FONT_VERSION-$PACKAGE_VERSION}"
-: "${OUT_FILE:=Magisk-Emoji-Font-$FONT-v$VERSION.zip}"
+setup_vars() {
+    set -a # Export variables
+    : "${BUILD_DIR:=build}"
+    : "${OUT_DIR:=out}"
+    : "${VERSION:=$FONT_VERSION-$PACKAGE_VERSION}"
+    : "${OUT_FILE:=Magisk-Emoji-Font-$FONT-v$VERSION.zip}"
+    set +a # Stop
+}
+
+parse_args() {
+    echo "Parsing arguments"
+    setup_vars
+    
+    
+    for arg in "$@"; do
+        case "${arg}" in
+            --build | -b)
+                echo "Building..."
+                build
+            ;;
+            --upload | -u)
+                echo "Uploading..."
+                echo "${FONT_VERSION}"
+                OUT_FILE="Magisk-Emoji-Font-$FONT-v$VERSION.zip"
+                upload_to_gitlab
+            ;;
+        esac
+    done
+}
 
 build() {
     $(dirname "$0")/build.sh
@@ -12,14 +37,14 @@ build() {
 set_module_prop() {
     local target="$1"
     local replacement="$2"
-
+    
     search_replace "${target}" "${replacement}" "$BUILD_DIR/module.prop"
 }
 
 set_install_script() {
     local target="$1"
     local replacement="$2"
-
+    
     search_replace "${target}" "${replacement}" "$BUILD_DIR/install.sh"
 }
 
@@ -27,7 +52,7 @@ search_replace() {
     local target="$1"
     local replacement="$2"
     local file="$3"
-
+    
     sed -i "s/$target/$replacement/g" "$file"
 }
 
@@ -46,6 +71,5 @@ export_font() {
 }
 
 upload_to_gitlab() {
-    echo ${OUT_FILE}
-    #curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${OUT_DIR}/${OUT_FILE} "${PACKAGE_REGISTRY_URL}/${OUT_FILE}"
+    curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${OUT_DIR}/${OUT_FILE} "${PACKAGE_REGISTRY_URL}/${OUT_FILE}"
 }

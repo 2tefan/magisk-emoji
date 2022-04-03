@@ -14,7 +14,7 @@ build-noto:
   script:
     - apt update && apt install -y zip
     - echo "Building Noto"
-    - ./buildNoto.sh
+    - ./buildNoto.sh --build
   artifacts:
     paths:
       - "out/*.zip"
@@ -29,7 +29,7 @@ build-ios:
   script:
     - apt update && apt install -y zip
     - echo "Building iOS"
-    - ./buildIOS.sh
+    - ./buildIOS.sh --build
   artifacts:
     paths:
       - "out/*.zip"
@@ -44,10 +44,8 @@ upload:
   rules:
     - if: $CI_COMMIT_TAG
   script:
-    - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file out/${NOTO_NAME} "${PACKAGE_REGISTRY_URL}/${NOTO_NAME}"
-    - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file out/${IOS_NAME} "${PACKAGE_REGISTRY_URL}/${IOS_NAME}"
+    - ./buildNoto.sh --upload
+    - ./buildIOS.sh --upload
 
 
 
