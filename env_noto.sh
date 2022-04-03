@@ -7,3 +7,12 @@ set -a # Export variables
 : "${VERSION_CODE:=2}"
 : "${FONT:=noto}"
 set +a # Stop
+
+echo $FONT_VERSION
+echo $FONT_VERSION
+echo $FONT_VERSION
+echo $FONT_VERSION
+echo $FONT_VERSION
+echo $FONT_VERSION
+echo $FONT_VERSION
+echo $FONT_VERSION
