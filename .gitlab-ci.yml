@@ -1,14 +1,5 @@
 variables:
-  # Feel free to choose the image that suits you best.
-  # blang/latex:latest ... Former image used in this template. No longer maintained by author.
-  # listx/texlive:2020 ... The default, referring to TexLive 2020. Current at least to 2021-02-02.
-
-  # Additional alternatives with high Docker pull counts:
-  # thomasweise/docker-texlive-full
-  # thomasweise/texlive
-  # adnrv/texlive
-  IMAGE: ubuntu:20220315
-
+  IMAGE: ubuntu:bionic-20220315
 
 stages:
   - build
