@@ -42,7 +42,7 @@ upload:
   rules:
     - if: $CI_COMMIT_TAG
   script:
-    - echo "export JOB_ID=${CI_JOB_ID}" > out/CI_JOB_ID.txt
+    - echo "export JOB_ID=${CI_JOB_ID}" > gitlab/CI_JOB_ID.txt
   artifacts:
     expire_in: never
     paths:
@@ -50,7 +50,7 @@ upload:
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-      - out/
+      - gitlab/
 
 
 release_job:
@@ -61,8 +61,8 @@ release_job:
   script:
     - echo "running release_job"
     - echo "Using artifacts from"
-    - ls out/
-    - cat "out/CI_JOB_ID.txt"
+    - ls gitlab/
+    - cat "gitlab/CI_JOB_ID.txt"
   release:
     name: 'Release $CI_COMMIT_TAG'
     description: 'Created using the release-cli $EXTRA_DESCRIPTION'  # $EXTRA_DESCRIPTION must be defined
