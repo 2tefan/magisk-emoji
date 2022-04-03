@@ -20,8 +20,8 @@ parse_args() {
                 build
             ;;
             --upload | -u)
-                echo "Uploading..."
-                echo "${OUT_FILE}"
+                echo "Uploading ${OUT_FILE}..."
+                upload_to_gitlab
             ;;
         esac
     done
