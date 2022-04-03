@@ -22,9 +22,7 @@ parse_args() {
             ;;
             --upload | -u)
                 echo "Uploading..."
-                echo "${FONT_VERSION}"
-                OUT_FILE="Magisk-Emoji-Font-$FONT-v$VERSION.zip"
-                upload_to_gitlab
+                echo "${OUT_FILE}"
             ;;
         esac
     done
