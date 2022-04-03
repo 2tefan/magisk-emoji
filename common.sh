@@ -1,7 +1,11 @@
 #!/bin/bash
 
-BUILD_DIR=build
-OUT_DIR=out
+: "${BUILD_DIR:=build}"
+: "${OUT_DIR:=out}"
+
+build() {
+    $(dirname "$0")/build.sh
+}
 
 set_module_prop() {
     local target="$1"
@@ -26,15 +30,15 @@ search_replace() {
 }
 
 init_env() {
-    VERSION="$FONT_VERSION-$PACKAGE_VERSION"
-
-    mkdir "$BUILD_DIR/"
+    echo "Initializing environment"
+    mkdir -p "$BUILD_DIR/"
     cp -a "Module/." "$BUILD_DIR/"
     cp -a "Data/$FONT/Font/v$FONT_VERSION.ttf" "$BUILD_DIR/system/fonts/NotoColorEmoji.ttf"
 }
 
 export_font() {
-    mkdir "$OUT_DIR/"
+    echo "Exporting font..."
+    mkdir -p "$OUT_DIR/"
     cd "$BUILD_DIR/"
     zip -r "../$OUT_DIR/Magisk-Emoji-Font-$FONT-v$VERSION.zip" *
 }
