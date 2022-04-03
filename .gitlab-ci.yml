@@ -41,6 +41,8 @@ upload:
   stage: upload
 #  rules:
 #    - if: $CI_COMMIT_TAG
+  script:
+    - echo "Uploading artifacts"
   artifacts:
     expire_in: never
     paths:
