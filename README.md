@@ -14,7 +14,7 @@ or
 ```
 
 ## Releases
-Here the newest version can be found: [Releases](https://github.com/2tefan/Magisk-Noto-Emoji-14/releases)
+The newest version can be found here: [Releases](https://gitlab.com/2tefan/magisk-emoji/-/releases)
 
 ## Changelog
 [Unicode 14.0](https://emojipedia.org/emoji-14.0/)
