@@ -12,7 +12,12 @@ setup_vars() {
 parse_args() {
     echo "Parsing arguments"
     setup_vars
-    
+
+    if [ -z "$@" ]; then 
+        echo "Please use --build or --upload or --update!"
+        exit 1
+    fi
+
     for arg in "$@"; do
         case "${arg}" in
             --build | -b)

@@ -1,16 +1,17 @@
 # Magisk Emoji
-Systemlessly replaces emoji font with different emoji
+Systemlessly replaces emoji font with different emojis
 
 Based on [Keinta15/Magisk-iOS-Emoji](https://github.com/Keinta15/Magisk-iOS-Emoji)
 
 ## Build
 
+To simply build the files just use the following commands:
 ```sh
-./buildNoto.sh
+./buildNoto.sh -b
 ```
 or
 ```sh
-./buildIOS.sh
+./buildIOS.sh -b
 ```
 
 ## Releases
