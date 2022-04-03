@@ -13,7 +13,6 @@ parse_args() {
     echo "Parsing arguments"
     setup_vars
     
-    
     for arg in "$@"; do
         case "${arg}" in
             --build | -b)
@@ -66,6 +65,7 @@ export_font() {
     mkdir -p "$OUT_DIR/"
     cd "$BUILD_DIR/"
     zip -r "../$OUT_DIR/$OUT_FILE" *
+    echo "Saved in $OUT_DIR/$OUT_FILE"
 }
 
 upload_to_gitlab() {

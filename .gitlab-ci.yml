@@ -14,6 +14,7 @@ build-noto:
   script:
     - apt update && apt install -y zip
     - echo "Building Noto"
+    - source env_noto.sh
     - ./buildNoto.sh --build
   artifacts:
     paths:
@@ -29,6 +30,7 @@ build-ios:
   script:
     - apt update && apt install -y zip
     - echo "Building iOS"
+    - source env_ios.sh 
     - ./buildIOS.sh --build
   artifacts:
     paths:
