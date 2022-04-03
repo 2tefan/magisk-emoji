@@ -80,7 +80,7 @@ update_json() {
     local file="Data/${FONT}/MagiskUpdate/update.json"
     local src="Data/common/MagiskUpdate/"
     local target="Data/${FONT}"
-    local tag=$(git tag | tail -1)
+    local tag=$(git describe --abbrev=0)
     
     cp -r "${src}" "${target}"
 
