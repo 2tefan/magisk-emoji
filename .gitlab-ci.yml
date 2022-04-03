@@ -62,6 +62,7 @@ upload:
     - ls out/
     - ./buildNoto.sh --upload
     - ./buildIOS.sh --upload
+    - ./buildTwemoji.sh --upload
 
 
 
