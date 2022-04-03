@@ -3,8 +3,7 @@ variables:
 
 stages:
   - build
-#  - test
-#  - deploy
+  - upload
   - release
 
 build-noto:
@@ -17,6 +16,10 @@ build-noto:
   artifacts:
     paths:
       - "out/*.zip"
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - out/
 
 build-ios:
   image: $IMAGE
@@ -28,6 +31,22 @@ build-ios:
   artifacts:
     paths:
       - "out/*.zip"
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - out/
+
+upload:
+  image: $IMAGE
+  stage: upload
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "export JOB_ID=${CI_JOB_ID}" > out/CI_JOB_ID.txt
+  artifacts:
+    expire_in: never
+    paths:
+      - "out/*.zip"
 
 release_job:
   stage: release
@@ -36,8 +55,15 @@ release_job:
     - if: $CI_COMMIT_TAG                  # Run this job when a tag is created manually
   script:
     - echo "running release_job"
+    - echo "Using artifacts from"
+    - cat "out/CI_JOB_ID.txt"
   release:
     name: 'Release $CI_COMMIT_TAG'
     description: 'Created using the release-cli $EXTRA_DESCRIPTION'  # $EXTRA_DESCRIPTION must be defined
     tag_name: '$CI_COMMIT_TAG'                                       # elsewhere in the pipeline.
     ref: '$CI_COMMIT_TAG'
+    assets:
+      links:
+        - name: "core.zip"
+          url: "https://gitlab.com/2tefan/magisk-emoji/-/jobs/$JOB_ID/artifacts/download"
+
