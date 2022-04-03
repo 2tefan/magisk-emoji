@@ -39,9 +39,10 @@ build-ios:
 upload:
   image: $IMAGE
   stage: upload
-  rules:
-    - if: $CI_COMMIT_TAG
+#  rules:
+#    - if: $CI_COMMIT_TAG
   script:
+    - mkdir gitlab
     - echo "export JOB_ID=${CI_JOB_ID}" > gitlab/CI_JOB_ID.txt
   artifacts:
     expire_in: never
@@ -56,8 +57,8 @@ upload:
 release_job:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
-  rules:
-    - if: $CI_COMMIT_TAG                  # Run this job when a tag is created manually
+#  rules:
+#    - if: $CI_COMMIT_TAG                  # Run this job when a tag is created manually
   script:
     - echo "running release_job"
     - echo "Using artifacts from"
