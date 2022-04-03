@@ -2,7 +2,10 @@
 
 . $(dirname "$0")/common.sh
 
-VERSION="$FONT_VERSION-$PACKAGE_VERSION"
+if [ -z "${FONT_VERSION}" ]; then 
+    echo "Defaults not working... Please use bash"
+    exit 1
+fi
 
 init_env
 

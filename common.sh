@@ -2,6 +2,8 @@
 
 : "${BUILD_DIR:=build}"
 : "${OUT_DIR:=out}"
+: "${VERSION:=$FONT_VERSION-$PACKAGE_VERSION}"
+: "${OUT_FILE:=Magisk-Emoji-Font-$FONT-v$VERSION.zip}"
 
 build() {
     $(dirname "$0")/build.sh
@@ -40,5 +42,10 @@ export_font() {
     echo "Exporting font..."
     mkdir -p "$OUT_DIR/"
     cd "$BUILD_DIR/"
-    zip -r "../$OUT_DIR/Magisk-Emoji-Font-$FONT-v$VERSION.zip" *
+    zip -r "../$OUT_DIR/$OUT_FILE" *
+}
+
+upload_to_gitlab() {
+    echo ${OUT_FILE}
+    #curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${OUT_DIR}/${OUT_FILE} "${PACKAGE_REGISTRY_URL}/${OUT_FILE}"
 }
