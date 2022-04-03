@@ -12,6 +12,7 @@ setup_vars() {
 parse_args() {
     echo "Parsing arguments"
     setup_vars
+    echo $FONT_VERSION
     
     for arg in "$@"; do
         case "${arg}" in

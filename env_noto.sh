@@ -9,10 +9,3 @@ set -a # Export variables
 set +a # Stop
 
 echo $FONT_VERSION
-echo $FONT_VERSION
-echo $FONT_VERSION
-echo $FONT_VERSION
-echo $FONT_VERSION
-echo $FONT_VERSION
-echo $FONT_VERSION
-echo $FONT_VERSION
