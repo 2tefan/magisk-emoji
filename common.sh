@@ -23,6 +23,10 @@ parse_args() {
                 echo "Uploading ${OUT_FILE}..."
                 upload_to_gitlab
             ;;
+            --update | -U)
+                echo "Upgrading update.json ${OUT_FILE}..."
+                update_json
+            ;;
         esac
     done
 }
@@ -70,4 +74,21 @@ export_font() {
 
 upload_to_gitlab() {
     curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file ${OUT_DIR}/${OUT_FILE} "${PACKAGE_REGISTRY_URL}/${OUT_FILE}"
+}
+
+update_json() {
+    local file="Data/${FONT}/MagiskUpdate/update.json"
+    local src="Data/common/MagiskUpdate/"
+    local target="Data/${FONT}"
+    local tag=$(git tag | tail -1)
+    
+    cp -r "${src}" "${target}"
+
+    search_replace "<version>" "${VERSION}" "${file}"
+    search_replace "<versionCode>" "${VERSION_CODE}" "${file}"
+    search_replace "<tag>" "${tag}" "${file}"
+    search_replace "<out_file>" "${OUT_FILE}" "${file}"
+    search_replace "<font>" "${FONT}" "${file}"
+
+    echo "Updated ${file}"
 }
