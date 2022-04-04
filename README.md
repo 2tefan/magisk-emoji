@@ -15,6 +15,7 @@ To simply build the files just use one of the following commands:
 ./buildNoto.sh -b
 ./buildIOS.sh -b
 ./buildTwemoji.sh -b
+./buildBlobmoji.sh -b
 ```
 
 ## Releases
