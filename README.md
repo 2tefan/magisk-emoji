@@ -28,3 +28,4 @@ The newest version can be found here: [Releases](https://gitlab.com/2tefan/magis
 - [Noto](https://github.com/googlefonts/noto-emoji/releases/tag/v2.034)
 - [iOS](https://github.com/samuelngs/apple-emoji-linux/releases/tag/ios-15.4)
 - [Twemoji](https://github.com/twitter/twemoji)
+- [Blobmoji](https://github.com/C1710/blobmoji/releases/tag/v14.0.1)
