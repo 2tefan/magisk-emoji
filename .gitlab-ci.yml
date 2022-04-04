@@ -52,6 +52,21 @@ build-twemoji:
     paths:
       - out/
 
+build-blobmoji:
+  image: $IMAGE
+  stage: build
+  script:
+    - apt update && apt install -y zip
+    - echo "Building Blobmoji"
+    - ./buildBlobmoji.sh --build
+  artifacts:
+    paths:
+      - "out/*.zip"
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - out/
+
 upload:
   image: $IMAGE
   stage: upload
@@ -63,6 +78,7 @@ upload:
     - ./buildNoto.sh --upload
     - ./buildIOS.sh --upload
     - ./buildTwemoji.sh --upload
+    - ./buildBlobmoji.sh --upload
 
 
 
@@ -78,8 +94,10 @@ release:
     - TWEMOJI=$(ls -r out | head -1 | tail -1)
     - NOTO=$(ls -r out | head -2 | tail -1)
     - IOS=$(ls -r out | head -3 | tail -1)
+    - BLOBMOJI=$(ls -r out | head -4 | tail -1)
     - |
       release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG \
         --assets-link "{\"name\":\"${TWEMOJI}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${TWEMOJI}\"}" \
         --assets-link "{\"name\":\"${NOTO}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${NOTO}\"}" \
+        --assets-link "{\"name\":\"${BLOBMOJI}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${BLOBMOJI}\"}" \
         --assets-link "{\"name\":\"${IOS}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${IOS}\"}"
